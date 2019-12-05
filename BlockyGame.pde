@@ -81,7 +81,6 @@ public void keyPressed(){
 						board[x][y].addToOther(board[x+1][y]);
 					if(x==1)
 						board[x-1][y].addToOther(board[x][y]);
-					break;
 				}
 			}
 		}
