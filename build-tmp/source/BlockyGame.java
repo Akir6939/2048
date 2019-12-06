@@ -20,11 +20,9 @@ public void setup(){
 	moved = false;
 	board = new Block[3][3];
 	
-	int count = 1;
 	for(int y = 0;y<3;y++){
 		for(int x = 0;x<3;x++){
-			board[x][y] = new Block(x*300,y*300,count);
-			count++;
+			board[x][y] = new Block(x*300,y*300);
 		}
 	}
 	addNewNum();
@@ -67,7 +65,7 @@ public void draw(){
 		fill(255,255,0);
 		text("You Lose!",400,400);
 		noLoop();
-		return;
+		//return;
 	}
 }
 public void addNewNum(){
@@ -97,7 +95,6 @@ public void keyPressed(){
 						board[x][y].addToOther(board[x+1][y]);
 					if(x==1)
 						board[x-1][y].addToOther(board[x][y]);
-					break;
 				}
 			}
 		}
@@ -166,12 +163,11 @@ public void keyReleased(){
 }
 }
 class Block{
-	private int myNum, myX, myY,myIndex;
-	public Block(int x, int y,int i){
+	private int myNum, myX, myY;
+	public Block(int x, int y){
 		myX = x;
 		myY = y;
 		myNum = 0;
-		myIndex = i;
 	}
 	public void addToMe(int num){
 		myNum+=num;
@@ -193,9 +189,6 @@ class Block{
 	}
 	public void setNum(int s){
 		myNum = s;
-	}
-	public int getIndex(){
-		return myIndex;
 	}
 }
   public void settings() { 	size(900,900); }

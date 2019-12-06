@@ -4,11 +4,9 @@ public void setup(){
 	moved = false;
 	board = new Block[3][3];
 	size(900,900);
-	int count = 1;
 	for(int y = 0;y<3;y++){
 		for(int x = 0;x<3;x++){
-			board[x][y] = new Block(x*300,y*300,count);
-			count++;
+			board[x][y] = new Block(x*300,y*300);
 		}
 	}
 	addNewNum();
@@ -51,7 +49,7 @@ public void draw(){
 		fill(255,255,0);
 		text("You Lose!",400,400);
 		noLoop();
-		return;
+		//return;
 	}
 }
 public void addNewNum(){
@@ -81,7 +79,6 @@ public void keyPressed(){
 						board[x][y].addToOther(board[x+1][y]);
 					if(x==1)
 						board[x-1][y].addToOther(board[x][y]);
-					break;
 				}
 			}
 		}

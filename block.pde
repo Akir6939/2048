@@ -1,10 +1,9 @@
 class Block{
-	private int myNum, myX, myY,myIndex;
-	public Block(int x, int y,int i){
+	private int myNum, myX, myY;
+	public Block(int x, int y){
 		myX = x;
 		myY = y;
 		myNum = 0;
-		myIndex = i;
 	}
 	public void addToMe(int num){
 		myNum+=num;
@@ -26,8 +25,5 @@ class Block{
 	}
 	public void setNum(int s){
 		myNum = s;
-	}
-	public int getIndex(){
-		return myIndex;
 	}
 }
