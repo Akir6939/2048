@@ -16,7 +16,9 @@ public class BlockyGame extends PApplet {
 
 Block[][] board;
 boolean moved;
+int score;
 public void setup(){
+	score = 0;
 	moved = false;
 	board = new Block[3][3];
 	
@@ -39,6 +41,11 @@ public boolean loseCheck(){
 		}
 	}
 	return true;
+}
+public void score(){
+	textSize(16);
+	fill(255);
+	text("Score: "+score,45,15);
 }
 public boolean checkForMoves(){
 	for(int j = 0;j<2;j++){
@@ -65,8 +72,8 @@ public void draw(){
 		fill(255,255,0);
 		text("You Lose!",400,400);
 		noLoop();
-		//return;
 	}
+	score();
 }
 public void addNewNum(){
 	int indexToAddX = (int)(Math.random()*3);
@@ -92,6 +99,7 @@ public void keyPressed(){
 			for(int y = 0;y<3;y++){
 				for(int x = 0;x<2;x++){
 					if(board[x+1][y].getNum()==board[x][y].getNum()||board[x+1][y].getNum()==0){
+						score= board[x+1][y].getNum()!=0 ? score+board[x+1][y].getNum()*2 : score;
 						board[x][y].addToOther(board[x+1][y]);
 					if(x==1)
 						board[x-1][y].addToOther(board[x][y]);
@@ -104,6 +112,7 @@ public void keyPressed(){
 			for(int y = 2;y>0;y--){
 				for(int x = 0;x<3;x++){
 					if(board[x][y-1].getNum()==board[x][y].getNum()||board[x][y-1].getNum()==0){
+						score = board[x][y-1].getNum()!=0 ? score+board[x][y-1].getNum()*2 : score;
 						board[x][y].addToOther(board[x][y-1]);
 					if(y==1)
 						board[x][y+1].addToOther(board[x][y]);
@@ -116,6 +125,7 @@ public void keyPressed(){
 			for(int y = 0;y<3;y++){
 				for(int x = 2;x>0;x--){
 					if(board[x-1][y].getNum()==board[x][y].getNum()||board[x-1][y].getNum()==0){
+						score = board[x-1][y].getNum()!=0 ? score+board[x-1][y].getNum()*2 : score;
 						board[x][y].addToOther(board[x-1][y]);
 					if(x==1)
 						board[x+1][y].addToOther(board[x][y]);
@@ -128,6 +138,7 @@ public void keyPressed(){
 			for(int y = 0;y<2;y++){
 				for(int x = 0;x<3;x++){
 					if(board[x][y+1].getNum()==board[x][y].getNum()||board[x][y+1].getNum()==0){
+						score = board[x][y+1].getNum()!=0 ? score+board[x][y+1].getNum()*2 : score;
 						board[x][y].addToOther(board[x][y+1]);
 					if(y==1)
 						board[x][y-1].addToOther(board[x][y]);
@@ -159,8 +170,8 @@ public void keyReleased(){
 			case 83:
 			addNewNum();
 			moved = false;
+		}
 	}
-}
 }
 class Block{
 	private int myNum, myX, myY;
